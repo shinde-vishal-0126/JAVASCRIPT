@@ -34,7 +34,7 @@ Note :
     1. declaration :
       - Declaration: The JavaScript compiler registers the variable identifier in its enclosing scope (global, function, or block). No value is bound yet.
       
-      - let x; // Declaring 'x
+      - let x; // Declaring karan 
 
     2. initialization
       - The variable is allocated memory and bound to an initial value (either explicitly or defaults to undefined).
@@ -42,6 +42,7 @@ Note :
       - let is initialized to undefined or a specified value only when the declaration statement is executed.
       - const must be initialized immediately at declaration.
       
+      - let y = 20  // declaration & initialilzation (i.e Give first value )
       - x = 10; // Initializing 'x' with the value 10
       - x = 20; // Re-assigning 'x' to 20
   
@@ -235,8 +236,6 @@ letDemo();
 
 
 
-
-
 // # const
 // Variables declared with const are block-scoped, 
 // must be initialized upon declaration, and their reference cannot be updated or reassigned.
@@ -253,19 +252,20 @@ constDemo();
 
 /*
 
-@ Hoisting & Temporal Dead Zone (TDZ)
+@ HOISTING & TEMPORAL DEAD ZONE 
+!Q. What is Hoisting in jS ?
 
-Q. What is Hoisting in jS ?
-  - Hoisting is a Javascript Mechanisum or Default Behaviour in Which variable and function declaration are moved to the top of their scope before code execution.
+    - Hoisting is a Javascript Mechanisum or Default Behaviour in Which variable and function declaration are moved to the top of their scope before code execution.
     - Hoisting is JavaScript's default behavior of moving declarations to the top of their current scope during the compilation phase.
+    
     - Var Hoisting :
-      - var hoisting: The declaration is hoisted to the top and initialized with the default value of undefined.
-      - Variables declared with var are hoisted to the top of their enclosing function or global scope.
-      - However, only the declaration is hoisted, not the initialization.
+      - var hoisting: 
+            - The declaration is hoisted to the top and initialized with the default value of undefined.
+            - Variables declared with var are hoisted to the top of their enclosing function or global scope.
+            - However, only the declaration is hoisted, not the initialization.
       - This means that if you try to access a var variable before its declaration, it will return undefined instead of throwing an error.
-  - Example:
-    console.log(a); // undefined (due to hoisting)
-    var a = 10; // Declaration is hoisted, but initialization happens here
+    
+   
           Memory Creation Phase (Hoisting)
             ───────────────────────────────────────────────────────────
             aVar
@@ -282,14 +282,27 @@ Q. What is Hoisting in jS ?
                     │
                     └── Value becomes 10
 
-            console.log(aVar);
-            ✅ 10
-    - Let & Const Hoisting :
+            console.log(aVar); ✅ 10
+*/
+
+console.log(name)
+// var variable are hoisted because variable declaration are move to the top of theire scope before code execution 
+// var variable declaration are hoisted not initialziation (var intitialize with undefined.)
+ var name = 'viahsl'
+ console.log(name)
+
+
+/*    
+
+- Let & Const Hoisting :
+
       - let and const are also hoisted to the top of their block scope, but they are not initialized.
       - let & const hoisting: The variables are hoisted, but they are not initialized. They enter the Temporal Dead Zone (TDZ).
       - This means that if you try to access a let or const variable before its declaration, it will throw a ReferenceError.
       - This period between the start of the block and the declaration is known as the Temporal Dead Zone (TDZ).
       - During this time, the variable exists in memory but cannot be accessed.
+
+
         Memory Creation Phase (Hoisting)
         ───────────────────────────────────────────────────────────
         aVar
@@ -297,6 +310,8 @@ Q. What is Hoisting in jS ?
         ├── Memory is reserved for aVar
         ├── NOT initialized
         └── Value = <uninitialized>
+
+
         Execution Phase
         ───────────────────────────────────────────────────────────
         Start of Block Scope
@@ -317,16 +332,21 @@ Q. What is Hoisting in jS ?
                 └── TDZ Ends
                 │
                 ▼
-        console.log(aVar);
-        ✅ 10
+        console.log(aVar); ✅ 10
 
+
+/*
 Q. What is Temporal Dead Zone (TDZ) ?
+
     - The Temporal Dead Zone (TDZ) is a behavior in JavaScript that occurs with variables declared using let and const.
     - It refers to the time between the start of a block and the point where the variable is declared, during which the variable exists in memory but cannot be accessed.
     - If you try to access a let or const variable before its declaration, it will throw a ReferenceError.
-    - The TDZ is the region of the code / period of time from the start of the block scope until the line where the variable is officially declared and initialized. Accessing the variable inside the TDZ throws a ReferenceError.
-    - ex
-    {
+    - The TDZ is the region of the code / period of time from the start of the block scope until the line where the variable is officially declared and initialized. '
+    - Accessing the variable inside the TDZ throws a ReferenceError.
+
+*/
+// ex
+{
   // TDZ starts here
   // name exists, but cannot be accessed
   console.log(name); // ❌ Error
@@ -334,25 +354,32 @@ Q. What is Temporal Dead Zone (TDZ) ?
   // TDZ ends here
   console.log(name); // ✅ Vishal
 }
-- Temporal Dead Zone (TDZ) is the time between entering a block scope and the execution of a let or const declaration.
- During this time, the variable is hoisted but remains uninitialized, and accessing it throws a ReferenceError.
--------------
-# Note :
+/*
+    - Temporal Dead Zone (TDZ) is the time between entering a block scope and the execution of a let or const declaration.
+    - During this time, the variable is hoisted but remains uninitialized, and accessing it throws a ReferenceError.
+
+Note :
   - Hoisting means JavaScript allocates memory for declarations before executing the code.
   - TDZ is the period during execution from the start of a block until a let or const variable is initialized. During this period, the variable is hoisted but uninitialized, so accessing it throws a ReferenceError.
-  - Hoisting is the process of allocating memory   before execution begins.
   - TDZ is the runtime period during execution where a hoisted let or const variable exists but cannot be accessed until its declaration is executed.
   - Hoisting is a compile-time behavior where JavaScript allocates memory for declarations before execution.
   - The Temporal Dead Zone (TDZ) is a runtime period during execution where a hoisted let or const variable exists but remains uninitialized, so accessing it before its declaration results in a ReferenceError
 
--------------
-Q. Does a let variable default to undefined if it is declared without initialization? If yes, then how is it different from var?
+
+
+
+
+  ! Q. Does a let variable default to undefined if it is declared without initialization? If yes, then how is it different from var?
    - Both var and let default to undefined when declared without an initializer.
    - The difference is that var is initialized to undefined during the hoisting (memory creation) phase,
    - whereas let is initialized to undefined only when execution reaches its declaration.
    Before that point, a let variable is in the Temporal Dead Zone (TDZ), so accessing it throws a ReferenceError
--------------
-Q. Can you explain the difference between hoisting and the Temporal Dead Zone (TDZ) in JavaScript?
+
+
+
+
+
+! Q. Can you explain the difference between hoisting and the Temporal Dead Zone (TDZ) in JavaScript?
 
 | Feature                       | Hoisting                                                                                       | Temporal Dead Zone (TDZ)                                                              |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -367,74 +394,101 @@ Q. Can you explain the difference between hoisting and the Temporal Dead Zone (T
 
 
 */
+
+
+
 /*
 
 @ VARIABLE SHADOWING
+
     - Shadowing means an inner scope declares a variable with the same name as a variable in an outer scope.
     - The inner variable hides (shadows) the outer variable within its own scope.
     - There are two types:
         1. Legal Shadowing : The inner variable hides the outer variable only inside its own block
         2. Illegal Shadowing : A var declaration inside a block conflicts with an outer let or const.
 
-Q. What is variable shadowing in JavaScript?
+
+
+! Q. What is variable shadowing in JavaScript?
     - Variable shadowing occurs when a variable declared within a certain scope (e.g., a function or block) has the same name as a variable declared in an outer scope.
     - In such cases, the inner variable "shadows" or overrides the outer variable within its scope, making the outer variable inaccessible in that inner scope.
     - This can lead to confusion and bugs if not managed carefully, as it may not be immediately clear which variable is being referenced.
 
     - Variable shadowing occurs when an inner scope declares a variable with the same name as one in the outer scope.
     - The inner variable shadows (hides) the outer variable within its block.
-    - Shadowing does not cross scope boundaries; once we exit the inner scope, the outer variable's value is restored or overridden by the inner variable's value if it was modified.
--------------
-Q. How does variable shadowing work in JavaScript?
+    - Shadowing does not cross scope boundaries;
+    - once we exit the inner scope, the outer variable's value is restored or overridden by the inner variable's value if it was modified.
+
+
+
+!Q. How does variable shadowing work in JavaScript?
+
     - When a variable is declared in an inner scope with the same name as a variable in an outer scope, the inner variable takes precedence within that inner scope.
     - The outer variable is still present in memory, but it is not accessible while inside the inner scope.
     - Once the execution leaves the inner scope, the outer variable becomes accessible again.
-    - Example:
+    - Example:  */
       var x = 10; // Outer variable
       function example() {
       var x = 20; // Inner variable shadows outer variable
       console.log(x); // 20 (inner variable)
       }
       console.log(x); // 10 (outer variable)
-    - In this example, the inner variable x (20) shadows the outer variable x (10) within the function example.
-    - When console.log(x) is called inside the function, it refers to the inner variable, not the outer one.
-    - Once the function execution is complete, the outer variable x (10) remains unchanged and accessible outside the function.
--------------
-Q. What is illegal shadowing in JavaScript?
+    // In this example, the inner variable x (20) shadows the outer variable x (10) within the function example.
+    // When console.log(x) is called inside the function, it refers to the inner variable, not the outer one.
+    // Once the function execution is complete, the outer variable x (10) remains unchanged and accessible outside the function.
+
+
+
+
+/*
+! Q. What is illegal shadowing in JavaScript? 
+
     - Illegal shadowing occurs when a variable declared in an inner scope attempts to shadow a variable declared in an outer scope, but the outer variable is declared with const or let.
     - Since const and let are block-scoped and cannot be redeclared in the same scope,
-    - trying to declare a variable with the same name in an inner scope will result in a SyntaxError.
-    - Example:
+    - trying to declare a variable with the same name in an inner scope will result in a SyntaxError.  */
+    // Example:
         let x = 10;
         function example() {
         let x = 20; // Legal shadowing
         console.log(x); // 20 (inner variable)
         }
-    - In this example, the inner variable x (20) legally shadows the outer variable x (10) within the function example.
-    - However, if we tried to declare another let or const variable with the same name in the same scope, it would result in a SyntaxError.
-    - Illegal shadowing occurs when a var declaration tries to shadow a let or const variable,
-    - but because var is function-scoped, it gets hoisted to the enclosing function scope and conflicts with the existing let/const declaration.
-    - Example:
+
+    // In this example, the inner variable x (20) legally shadows the outer variable x (10) within the function example.
+    // However, if we tried to declare another let or const variable with the same name in the same scope, it would result in a SyntaxError.
+    // Illegal shadowing occurs when a var declaration tries to shadow a let or const variable,
+    // but because var is function-scoped, it gets hoisted to the enclosing function scope and conflicts with the existing let/const declaration.
+
+
+    // Example:
         function illegalShadowingDemo() {
-        let name = "Vishal";
+        // let name = "Vishal";
         if (true) {
         // ❌ SyntaxError
         var name = "Shinde";
         }
     }
-  -  SyntaxError: Identifier 'name' has already been declared
--------------
+//  SyntaxError: Identifier 'name' has already been declared  
+/*
 
-Q. comparision
+
+
+
+!Q. comparision
+
 | Scenario                                       | Allowed? | Reason                                                                        |
 | ---------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
 | `var` → `let` (inner block)                    | ✅ Yes    | Different scopes (function vs. block).                                        |
 | `let` → `let` (inner block)                    | ✅ Yes    | Inner `let` shadows the outer `let`.                                          |
 | `const` → `const` (inner block)                | ✅ Yes    | Inner `const` shadows the outer `const`.                                      |
 | `let` → `var` (same function after hoisting)   | ❌ No     | `var` is hoisted to the function scope and conflicts with the existing `let`. |
-| `const` → `var` (same function after hoisting) | ❌ No     | Same reason as above.                                                         |
--------------
-Q. Differences between   Legal Shadowing  vs Illegal Shadowing  ?
+| `const` → `var` (same function after hoisting) | ❌ No     | Same reason as above.                                                         |44
+
+
+
+
+
+
+!Q. Differences between   Legal Shadowing  vs Illegal Shadowing  ?
 
 | Feature            | Legal Shadowing                                                                                   | Illegal Shadowing                                                                                          |
 | ------------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -442,16 +496,22 @@ Q. Differences between   Legal Shadowing  vs Illegal Shadowing  ?
 | **Allowed?**       | ✅ Yes                                                                                             | ❌ No                                                                                                       |
 | **Error**          | No error                                                                                          | `SyntaxError: Identifier has already been declared`                                                        |
 | **Reason**         | Variables exist in different scopes.                                                              | `var` is hoisted to the function scope and clashes with `let`/`const`.                                     |
-| **Common Example** | `var` → `let`, `let` → `let`, `const` → `const`                                                   | `let` → `var`, `const` → `var`                                                                             |
+| **Common Example** | `var` → `let`, `let` → `let`, `const` → `const`   | `let` → `var`, `const` → `var`                                                                             |
 */
+
+
+
 let x = 10; // Outer variable
 function example() {
   let x = 20; // Inner variable shadows outer variable
   console.log(x); // 20 (inner variable)
 }
 console.log(x); // 10 (outer variable)
-// -------------
-//# Legal shadowing
+
+
+
+
+// Legal shadowing
 function demo() {
   var name = "vishal";
   if (true) {
@@ -461,7 +521,9 @@ function demo() {
   console.log(name);
 }
 demo();
-// -------------
+
+
+
 //#  Illegal shadowing
 // A var declaration inside a block conflicts with an outer let & const
 function demo1() {
@@ -473,23 +535,27 @@ function demo1() {
   console.log(age);
 }
 demo1(); //
-// variable.js:418 Uncaught SyntaxError: Identifier 'age' has already been declared
-// WHY ?
-// - var ignores the block and is hoisted to the enclosing function scope.
+// variable.js:418 Uncaught SyntaxError: Identifier 'age' has already been declared44
+
+//! WHY ?
+    // var ignores the block and is hoisted to the enclosing function scope.
 // js treate as like
 function demo1() {
   // var name;
   let name = "Vishal"; // ❌ Duplicate declaration
 }
-// -------------
+
+
 
 /*
-Q. Can you change properties of an object declared with const?
+! Q. Can you change properties of an object declared with const?
     - Yes
     - const guarantees that the variable reference (the memory address stored in the stack) will not change.
     - It does not make the properties of the object in heap memory immutable.
-    -  To make the object completely immutable, you can use Object.freeze(obj).
--------------
+    -  To make the object completely immutable, you can use Object.freeze(obj).4
+    - const वापरल्यावर variable ला दुसरी value पुन्हा assign करता येत नाही.
+    - पण const object च्या properties बदलू शकतो का? होय! कारण const object ला पूर्णपणे immutable बनवत नाही. ते फक्त variable चे binding बदलण्यापासून रोखते.
+    - इथे error येत नाही. कारण आपण user ला नवीन object assign केलेला नाही, तर त्याच्या age property ची value बदलली आहे . const object → त्याच्या properties बदलता येतात.
 */
 const obj = { age: 30 };
 obj.age = 31; // Allowed
@@ -497,40 +563,55 @@ obj.age = 31; // Allowed
 x = 10;
 console.log("x....:", x);
 /*
-Q. What happens if you declare a variable without any keyword (e.g. x = 10)?
+
+
+! Q. What happens if you declare a variable without any keyword (e.g. x = 10)?
     -  If declared without var, let, or const, it becomes a property of the global object (window in browsers, global in Node.js) in non-strict mode.
+        - Non-strict mode मध्ये काय होते? : जेव्हा आपण non-strict mode मध्ये एखाद्या variable ला declare न करता value assign करतो, तेव्हा JavaScript मध्ये त्या नावाचा global object वर property तयार होऊ शकतो.
     -  In strict mode ("use strict"), it throws a ReferenceError because implicit global variable creation is forbidden.
-    .............
--------------
-Q. Why is var shadowing let illegal?
+        - Strict mode मध्ये JavaScript undeclared variable ला आपोआप global property बनवण्याची परवानगी देत नाही.
+
+
+
+    
+
+! Q. Why is var shadowing let illegal?
     - var is function-scoped, while let is block-scoped.
     - var ignores block boundaries and is hoisted to the enclosing function scope.
     - If a let variable with the same name already exists in that function scope, --> the hoisted var declaration creates a duplicate declaration.
-    - Since JavaScript does not allow a var and a let with the same name in the same scope, it throws a SyntaxError.
+    - Since JavaScript does not allow a var and a let with the same name in the same scope, it throws a SyntaxError. */
+
+
     function demo() {
-    let age = 25;
+    // let age = 25;
     if (true) {
     var age = 30; // ❌ SyntaxError
     }
 }
-    - JavaScript internally treats it like this after hoisting:
+// JavaScript internally treats it like this after hoisting:
 
     function demo() {
     var age;      // Hoisted to function scope
     let age = 25; // ❌ Duplicate declaration
 }
-- var shadowing let is illegal because var is function-scoped and gets hoisted to the enclosing function scope,
--  where it conflicts with the existing let declaration of the same name, resulting in a SyntaxError.
--------------
-Q. Explain the difference between Global, Function, and Block scope. ?
+//var shadowing let is illegal because var is function-scoped and gets hoisted to the enclosing function scope,
+// where it conflicts with the existing let declaration of the same name, resulting in a SyntaxError.
+
+
+/*
+! Q. Explain the difference between Global, Function, and Block scope. ?
     1.Global Scope:
         - Variables declared outside any function or block {}. They are accessible from anywhere in the file/application.
     2.Function Scope:
         - Variables declared with var, let, or const inside a function. They are only accessible within that function.
     3.Block Scope:
         - Variables declared with let or const inside curly braces {} (e.g. if block, loops, switch). They cannot be accessed outside of that block.
--------------
-Q.  How do let and const protect against accidental variable overrides in loops?
+
+
+
+
+
+! Q.  How do let and const protect against accidental variable overrides in loops?
     - let and const prevent accidental variable overrides because they are block-scoped, whereas var is function-scoped.
     - With var, a variable declared inside a loop is not limited to the loop.
     - After the loop finishes, the variable still exists in the surrounding function or global scope, which can accidentally overwrite or interfere with other variables.
