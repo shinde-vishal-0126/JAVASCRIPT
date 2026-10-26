@@ -549,6 +549,11 @@ function demo1() {
 
 /*
 ! Q. Can you change properties of an object declared with const?
+    - Reason: const prevents reassignment of the variable, not modification of the object's properties.
+    - Think of obj as a reference to an object in memory.
+    - Here, you are modifying the existing object's age property.
+    - The variable obj still refers to the same object. You are not reassigning obj. Therefore, no error occurs.
+    
     - Yes
     - const guarantees that the variable reference (the memory address stored in the stack) will not change.
     - It does not make the properties of the object in heap memory immutable.
